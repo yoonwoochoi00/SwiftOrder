@@ -7,6 +7,7 @@ namespace SwiftOrder_Server.Model
         [Key]
         public int KioskID { get; set; }
         public int RestaurantID { get; set; }
-        public int MenuID { get; set; }
+        public bool IsPaid { get; set; }
+        public bool IsKitchen { get; set; }
     }
 }
