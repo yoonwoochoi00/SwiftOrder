@@ -10,8 +10,8 @@ using SwiftOrder_Server.Data;
 namespace SwiftOrder_Server.Migrations
 {
     [DbContext(typeof(SwiftOrderDbContext))]
-    [Migration("20230328053631_280323_1")]
-    partial class _280323_1
+    [Migration("20230328060823_AddMenuCategory")]
+    partial class AddMenuCategory
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
