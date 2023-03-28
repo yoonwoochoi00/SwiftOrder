@@ -1,5 +1,6 @@
 # SwiftOrder
 > ***Kiosk Ordering Made Easy***
+SwiftOrder is a web-based kiosk ordering application.
 
 <br>
 
