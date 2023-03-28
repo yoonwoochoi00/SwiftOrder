@@ -1,15 +1,20 @@
-# SwiftOrder-Server
+# SwiftOrder
 > ***Kiosk Ordering Made Easy***
-
-SwiftOrder is a kiosk ordering system for restaurants, and this repository is specifically for its server side.
 
 <br>
 
 ## Built with
+### Back End
 - C#
 - .NET 6
 - LINQ
 - Entity Framework
+
+### Front End
+- JavaScript
+- React
+- HTML/CSS
+- SASS
 
 <br>
 
