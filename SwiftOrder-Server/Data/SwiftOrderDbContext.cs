@@ -10,10 +10,11 @@ namespace SwiftOrder_Server.Data
             optionsBuilder.UseSqlite("Data Source=SwiftOrderDatabase.sqlite");
         }
         
-        public DbSet<Restaurant> Restaurants { get; set; }
-        public DbSet<Table> Tables { get; set; }
-        public DbSet<Menu> Menus { get; set; }
-        public DbSet<Order> Orders { get; set; }
-        public DbSet<Kiosk> Kiosks { get; set; }
+        public DbSet<Restaurant> Restaurant { get; set; }
+        public DbSet<Table> Table { get; set; }
+        public DbSet<Menu> Menu { get; set; }
+        public DbSet<Order> Order { get; set; }
+        public DbSet<Kiosk> Kiosk { get; set; }
+        public DbSet<Kiosk> MenuCategory { get; set; }
     }
 }
