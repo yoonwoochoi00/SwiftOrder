@@ -36,6 +36,7 @@ namespace SwiftOrder_Server.Controllers
         public ActionResult<RestaurantOutDto> GetRestaurant(int id)
         {
             Restaurant restaurant = _repository.GetRestaurantByID(id);
+
             if (restaurant == null)
                 return NotFound();
             else
