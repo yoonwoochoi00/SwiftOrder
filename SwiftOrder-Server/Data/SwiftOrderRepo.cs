@@ -34,5 +34,21 @@ namespace SwiftOrder_Server.Data
 
             return r;
         }
+
+        // validation methods
+        public bool ValidateLogin(string emailAddress, string password)
+        {
+            Restaurant restaurantToLogin = _dbContext.Restaurant.FirstOrDefault(
+                e => e.EmailAddress == emailAddress && e.Password == password);
+
+            if (restaurantToLogin == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
     }
 }

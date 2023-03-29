@@ -7,5 +7,8 @@ namespace SwiftOrder_Server.Data
 		IEnumerable<Restaurant> GetAllRestaurants();
 		Restaurant GetRestaurantByID(int id);
 		Restaurant AddRestaurant(Restaurant customer);
+
+		// validation methods
+		public bool ValidateLogin(string emailAddress, string password);
 	}
 }

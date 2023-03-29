@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SwiftOrder_Server.Data;
 using SwiftOrder_Server.Dtos;
@@ -16,6 +17,8 @@ namespace SwiftOrder_Server.Controllers
             _repository = repository;
         }
 
+        [Authorize(AuthenticationSchemes = "LoginScheme")]
+        [Authorize(Policy = "UserOnly")]
         [HttpGet("GetAllRestaurants")]
         public ActionResult<IEnumerable<RestaurantOutDto>> GetAllRestaurants()
         {
@@ -30,28 +33,6 @@ namespace SwiftOrder_Server.Controllers
             });
 
             return Ok(r);
-        }
-
-        [HttpGet("GetRestaurant/{id}")]
-        public ActionResult<RestaurantOutDto> GetRestaurant(int id)
-        {
-            Restaurant restaurant = _repository.GetRestaurantByID(id);
-
-            if (restaurant == null)
-                return NotFound();
-            else
-            {
-                RestaurantOutDto r = new RestaurantOutDto
-                {
-                    RestaurantID = restaurant.RestaurantID,
-                    RestaurantName = restaurant.RestaurantName,
-                    EmailAddress = restaurant.EmailAddress,
-                    numTables = restaurant.numTables,
-                    Password = restaurant.Password
-                };
-
-                return Ok(r);
-            }
         }
 
         [HttpPost("AddRestaurant")]
