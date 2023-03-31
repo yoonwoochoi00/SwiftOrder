@@ -17,26 +17,8 @@ namespace SwiftOrder_Server.Controllers
             _repository = repository;
         }
 
-        [Authorize(AuthenticationSchemes = "LoginScheme")]
-        [Authorize(Policy = "UserOnly")]
-        [HttpGet("GetAllRestaurants")]
-        public ActionResult<IEnumerable<RestaurantOutDto>> GetAllRestaurants()
-        {
-            IEnumerable<Restaurant> restaurants = _repository.GetAllRestaurants();
-            IEnumerable<RestaurantOutDto> r = restaurants.Select(e => new RestaurantOutDto
-            { 
-                RestaurantID = e.RestaurantID,
-                RestaurantName = e.RestaurantName,
-                EmailAddress = e.EmailAddress,
-                numTables = e.numTables,
-                Password = e.Password
-            });
-
-            return Ok(r);
-        }
-
-        [HttpPost("AddRestaurant")]
-        public ActionResult<RestaurantOutDto> AddRestaurant(RestaurantInDto restaurant)
+        [HttpPost("Register")]
+        public ActionResult<RestaurantOutDto> Register(RestaurantInDto restaurant)
         {
             Restaurant r = new Restaurant
             {
@@ -46,7 +28,7 @@ namespace SwiftOrder_Server.Controllers
                 numTables = restaurant.numTables
             };
 
-            Restaurant addedRestaurant = _repository.AddRestaurant(r);
+            Restaurant addedRestaurant = _repository.Register(r);
 
             RestaurantOutDto ro = new RestaurantOutDto
             {
@@ -56,7 +38,7 @@ namespace SwiftOrder_Server.Controllers
                 numTables = addedRestaurant.numTables
             };
 
-            return CreatedAtAction(nameof(AddRestaurant), new
+            return CreatedAtAction(nameof(Register), new
             {
                 id = ro.RestaurantID
             }, ro);

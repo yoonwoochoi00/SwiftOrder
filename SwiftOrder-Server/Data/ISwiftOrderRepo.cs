@@ -4,9 +4,7 @@ namespace SwiftOrder_Server.Data
 {
 	public interface ISwiftOrderRepo
 	{
-		IEnumerable<Restaurant> GetAllRestaurants();
-		Restaurant GetRestaurantByID(int id);
-		Restaurant AddRestaurant(Restaurant customer);
+		Restaurant Register(Restaurant restaurant);
 
 		// validation methods
 		public bool ValidateLogin(string emailAddress, string password);
