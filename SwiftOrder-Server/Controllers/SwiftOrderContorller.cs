@@ -43,6 +43,26 @@ namespace SwiftOrder_Server.Controllers
                 id = ro.RestaurantID
             }, ro);
         }
-        
+
+        // menu
+        [Authorize(AuthenticationSchemes = "LoginScheme")]
+        [Authorize(Policy = "UserOnly")]
+        [HttpGet("GetAllMenus")]
+        public ActionResult<IEnumerable<MenuOutDto>> GetAllMenus()
+        {
+            IEnumerable<Menu> menus = _repository.GetAllMenus();
+            IEnumerable<MenuOutDto> result = menus.Select(e => new MenuOutDto
+            {
+                MenuID = e.MenuID,
+                RestaurantID = e.RestaurantID,
+                MenuName = e.MenuName,
+                MenuDescription = e.MenuDescription,
+                MenuPrice = e.MenuPrice,
+                MenuImage = e.MenuImage,
+                MenuAvailability = e.MenuAvailability
+            });
+
+            return Ok(result);
+        }
     }
 }

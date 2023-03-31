@@ -1,10 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace SwiftOrder_Server.Model
+﻿namespace SwiftOrder_Server.Dtos
 {
-    public class Menu
+    public class MenuOutDto
     {
-        [Key]
         public int MenuID { get; set; }
         public int RestaurantID { get; set; }
         public string MenuName { get; set; }
