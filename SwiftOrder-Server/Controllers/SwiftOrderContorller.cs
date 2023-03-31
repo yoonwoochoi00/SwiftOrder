@@ -53,7 +53,6 @@ namespace SwiftOrder_Server.Controllers
             IEnumerable<Menu> menus = _repository.GetAllMenus();
             IEnumerable<MenuOutDto> result = menus.Select(e => new MenuOutDto
             {
-                MenuID = e.MenuID,
                 RestaurantID = e.RestaurantID,
                 MenuName = e.MenuName,
                 MenuDescription = e.MenuDescription,
@@ -63,6 +62,39 @@ namespace SwiftOrder_Server.Controllers
             });
 
             return Ok(result);
+        }
+
+        [Authorize(AuthenticationSchemes = "LoginScheme")]
+        [Authorize(Policy = "UserOnly")]
+        [HttpPost("AddMenu")]
+        public ActionResult<MenuOutDto> AddMenu(MenuInDto menuEntry)
+        {
+            Menu newMenu = new Menu
+            {
+                RestaurantID = menuEntry.RestaurantID,
+                MenuName = menuEntry.MenuName,
+                MenuDescription = menuEntry.MenuDescription,
+                MenuPrice = menuEntry.MenuPrice,
+                MenuImage = menuEntry.MenuImage,
+                MenuAvailability = menuEntry.MenuAvailability
+            };
+
+            newMenu = _repository.AddMenu(newMenu);
+            MenuOutDto menuOut = new MenuOutDto
+            {
+                MenuID = newMenu.MenuID,
+                RestaurantID = newMenu.RestaurantID,
+                MenuName = newMenu.MenuName,
+                MenuDescription = newMenu.MenuDescription,
+                MenuPrice = newMenu.MenuPrice,
+                MenuImage = newMenu.MenuImage,
+                MenuAvailability = newMenu.MenuAvailability
+            };
+
+            return CreatedAtAction(nameof(AddMenu), new
+            {
+                id = menuOut.MenuID
+            }, menuOut);
         }
     }
 }

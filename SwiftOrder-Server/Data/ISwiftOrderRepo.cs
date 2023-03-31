@@ -9,6 +9,7 @@ namespace SwiftOrder_Server.Data
 
 		// menu
 		IEnumerable<Menu> GetAllMenus();
+		Menu AddMenu(Menu menu);
 
 		// validation methods
 		public bool ValidateLogin(string emailAddress, string password);

@@ -15,11 +15,11 @@ namespace SwiftOrder_Server.Data
         // restaurant
         public Restaurant Register(Restaurant restaurant)
         {
-            EntityEntry<Restaurant> e = _dbContext.Restaurant.Add(restaurant);
-            Restaurant r = e.Entity;
+            EntityEntry<Restaurant> restaurantEntry = _dbContext.Restaurant.Add(restaurant);
+            Restaurant newRestaurant = restaurantEntry.Entity;
             _dbContext.SaveChanges();
 
-            return r;
+            return newRestaurant;
         }
 
         // menu
@@ -28,6 +28,15 @@ namespace SwiftOrder_Server.Data
             IEnumerable<Menu> menus = _dbContext.Menu.ToList<Menu>();
 
             return menus;
+        }
+        
+        public Menu AddMenu(Menu menu)
+        {
+            EntityEntry<Menu> menuEntry = _dbContext.Menu.Add(menu);
+            Menu newMenu = menuEntry.Entity;
+            _dbContext.SaveChanges();
+
+            return newMenu;
         }
 
         // validation methods
