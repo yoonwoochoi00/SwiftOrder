@@ -16,6 +16,12 @@
 - HTML/CSS
 - SASS
 
+## Usage
+![SwiftOrder_ActivityDiagram](SwiftOrder_ActivityDiagram.png)
+
+## Data flow
+![SwiftOrder_EntityRelationshipDiagram](SwiftOrder_EntityRelationshipDiagram.png)
+
 <br>
 
 ## Resources
